@@ -1,4 +1,8 @@
+import { useState } from "react";
 import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
+
 import { UsersThree } from "phosphor-react-native";
 
 import { Header } from "@components/Header";
@@ -9,8 +13,16 @@ import { Input } from "@components/Input";
 import { s } from "./styles";
 
 export function NewGroup() {
+  const navigation = useNavigation();
+
+  const [group, setGroup] = useState<string>("");
+
+  function handlePlayers() {
+    navigation.navigate("players", { group });
+  }
+
   return (
-    <View style={s.containe}>
+    <SafeAreaView style={s.containe}>
       <Header showBackButton />
 
       <View style={s.content}>
@@ -22,10 +34,17 @@ export function NewGroup() {
         />
 
         <View style={{ gap: 20 }}>
-          <Input placeholder="Nome da turma" />
-          <Button title="Criar" />
+          <Input
+            placeholder="Nome da turma"
+            onChangeText={(text) => setGroup(text)}
+          />
+          <Button
+            title="Criar"
+            onPress={handlePlayers}
+            disabled={group.length === 0}
+          />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

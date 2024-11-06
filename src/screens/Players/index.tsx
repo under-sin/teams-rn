@@ -10,19 +10,26 @@ import { PlayerCard } from "@components/PlayerCard";
 
 import { s } from "./styles";
 import { ListEmpty } from "@components/ListEmpty";
+import { Button } from "@components/Button";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useRoute } from "@react-navigation/native";
+
+type RouteParams = {
+  group: string;
+};
 
 export function Players() {
   const [team, setTeam] = useState("Team A");
   const [players, setPlayers] = useState<string[]>([]);
 
+  const route = useRoute();
+  const { group } = route.params as RouteParams;
+
   return (
-    <View style={s.container}>
+    <SafeAreaView style={s.container}>
       <Header showBackButton />
 
-      <Highlight
-        title="Nome da turma"
-        subtitle="Adicione a galera e separe os times"
-      />
+      <Highlight title={group} subtitle="Adicione a galera e separe os times" />
 
       <View style={s.form}>
         <Input placeholder="Digite o nome do jogador" autoCorrect={false} />
@@ -59,6 +66,8 @@ export function Players() {
           players.length === 0 && { flex: 1 },
         ]}
       />
-    </View>
+
+      <Button title="Remover turma" type="remove" />
+    </SafeAreaView>
   );
 }

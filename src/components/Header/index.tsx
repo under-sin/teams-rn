@@ -1,7 +1,10 @@
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
 import { CaretLeft } from "phosphor-react-native";
 
 import logoImg from "@assets/logo.png";
+
 import { s } from "./styles";
 
 type HeaderProps = {
@@ -9,11 +12,19 @@ type HeaderProps = {
 };
 
 export function Header({ showBackButton = false }: HeaderProps) {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.navigate("groups");
+  }
+
   return (
     <View style={s.container}>
       {showBackButton && (
-        <TouchableOpacity style={s.backButton}>
-          <CaretLeft size={32} color={s.backIcon.color} />
+        <TouchableOpacity style={s.backButton} onPress={handleGoBack}>
+          <View>
+            <CaretLeft size={32} color={s.backIcon.color} />
+          </View>
         </TouchableOpacity>
       )}
 

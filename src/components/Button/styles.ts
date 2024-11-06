@@ -17,6 +17,9 @@ export const s = StyleSheet.create({
   removeButton: {
     backgroundColor: theme.colors.red_700,
   },
+  disabledButton: {
+    opacity: 0.6,
+  },
   text: {
     color: theme.colors.white,
     fontSize: theme.font_size.md,

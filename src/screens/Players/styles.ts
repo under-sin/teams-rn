@@ -2,18 +2,18 @@ import { StyleSheet } from "react-native";
 
 import { theme } from "@themes/index";
 
+const { colors, font_familty, font_size } = theme;
+
 export const s = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 24,
-    paddingBottom: 42,
+    padding: 24,
 
-    backgroundColor: theme.colors.gray_700,
+    backgroundColor: colors.gray_700,
   },
   form: {
     width: "100%",
-    backgroundColor: theme.colors.gray_800,
+    backgroundColor: colors.gray_800,
 
     flexDirection: "row",
     justifyContent: "center",
@@ -27,8 +27,8 @@ export const s = StyleSheet.create({
     alignItems: "center",
   },
   numbersOfPlayers: {
-    fontFamily: theme.font_familty.bold,
-    fontSize: theme.font_size.sm,
-    color: theme.colors.gray_200,
+    fontFamily: font_familty.bold,
+    fontSize: font_size.sm,
+    color: colors.gray_200,
   },
 });
